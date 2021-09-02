@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="btc.mapper.VueBoardMapper">
+	<select id="vueSelectBoardList" resultType="btc.dto.AxiosBoardDto">
+		<![CDATA[
+		
+			SELECT
+				seq, title, hit_cnt, creator_id,
+				DATE_FORMAT(created_date, '%Y.%m.%d %H:%i:%s') AS created_date
+			FROM
+				t_blog
+			WHERE
+				deleted_yn = 'N'
+			ORDER BY
+				seq DESC
+		]]>
+	</select>
+	
+	<insert id="vueInsertBoard" parameterType="btc.dto.AxiosBoardDto">
+		<![CDATA[ 
+	      
+	         INSERT INTO
+		            t_blog
+		            (title, contents, creator_id, created_date)
+	         VALUES
+	            	(#{title}, #{contents}, #{creatorId}, NOW())
+      	
+      	]]>
+	</insert>
+	
+	<select id="vueSelectDetaildBoard" parameterType="int" resultType="btc.dto.AxiosBoardDto">
+		<![CDATA[
+		
+	         SELECT
+	            seq,
+	            title, hit_cnt, creator_id, contents,
+	            DATE_FORMAT(created_date, '%Y.%m.%d %H:%i:%s') AS created_date
+	         FROM
+	            t_blog
+	         WHERE
+	            seq = #{seq}
+	         ORDER BY
+	            seq DESC
+	            
+		
+		]]>
+	</select>
+	
+	<update id="vueCountUp" parameterType="int">
+		<![CDATA[
+			update t_blog set hit_cnt = hit_cnt + 1 where seq = #{seq}
+		]]>
+	</update>
+	
+	<update id="vueUpdateBoard" parameterType="btc.dto.AxiosBoardDto">
+		<![CDATA[ 
+		
+	         UPDATE
+	            t_blog
+	         SET
+	            title= #{title},
+	            contents= #{contents},
+	            updated_date= NOW(),
+	            updater_id= #{updaterId}
+	         WHERE
+	            seq = #{seq}
+      
+      ]]>
+	</update>
+	
+	<!-- 목록에서만 안 보이게 하는 삭제방법-->
+	<update id="vueDeleteBoard" parameterType="int">
+		<![CDATA[ 
+				UPDATE t_blog SET
+					deleted_yn = 'Y'
+				WHERE
+	            	seq = #{seq}
+		]]>
+	</update>
+	
+	<!-- 완전히 삭제하는 방법-->
+	<!-- <delete id="vueDeleteBoard" parameterType="int">
+   		<![CDATA[ ew
+   			delete
+   			from
+   			t_blog
+   			where
+   			seq = #{seq}
+   		]]>
+   </delete> -->
+</mapper>
