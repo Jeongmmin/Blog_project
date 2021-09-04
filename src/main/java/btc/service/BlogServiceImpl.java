@@ -5,38 +5,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import btc.dto.AxiosBoardDto;
-import btc.mapper.VueBoardMapper;
+import btc.dto.BlogDto;
+import btc.mapper.BlogMapper;
 
 @Service
-public class VueBoardServiceImpl implements VueBoardService {
+public class BlogServiceImpl implements BlogService {
 
 	@Autowired
-	private VueBoardMapper vbMapper;
+	private BlogMapper bMapper;
 	
+//	게시판 목록 불러오기
 	@Override
-	public List<AxiosBoardDto> vueSelectBoardList() throws Exception {
-		return vbMapper.vueSelectBoardList();
+	public List<BlogDto> selectBlogBoardList() throws Exception {
+		return bMapper.selectBlogBoardList();
 	}
 	
+//	게시판 상세내용 보기
 	@Override
-	public void vueInsertBoard(AxiosBoardDto board) throws Exception {
-		vbMapper.vueInsertBoard(board);
+	public BlogDto selectBlogBoardDetail(int seq) throws Exception {
+		bMapper.vueCountUp(seq);
+		return bMapper.selectBlogBoardDetail(seq);
 	}
 	
+//	게시물 입력하기
 	@Override
-	public AxiosBoardDto vueSelectDetailBoard(int seq) throws Exception {
-		vbMapper.vueCountUp(seq);
-		return vbMapper.vueSelectDetaildBoard(seq);
+	public void blogBoardInsert(BlogDto board) throws Exception {
+		bMapper.blogBoardInsert(board);
 	}
 	
+//	게시물 수정하기
 	@Override
-	public void vueUpdateBoard(AxiosBoardDto board) throws Exception {
-		vbMapper.vueUpdateBoard(board);
+	public void blogBoardUpdate(BlogDto board) throws Exception {
+		bMapper.blogBoardUpdate(board);
 	}
 	
+//	게시물 삭제하기
 	@Override
-	   public void vueDeleteBoard(int seq) throws Exception {
-	      vbMapper.vueDeleteBoard(seq);
+	   public void blogBoardDelete(int seq) throws Exception {
+		bMapper.blogBoardDelete(seq);
 	  }
 }

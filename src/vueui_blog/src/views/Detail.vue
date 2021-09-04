@@ -1,35 +1,36 @@
 <template>
+<div>
+    <div class="container" id="tablediv">
+        <table class="table-borderless">
+            <thead>
+                <tr id="thtr">
+                    <th scope="col" colspan="2"><h3>{{title}}</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td col class="text-left"><h6>{{creatorId}}</h6></td>
+                    <td col><h6>{{createdDate}}</h6></td>
+                </tr>
+                <tr>
+                    <td colspan="2">{{contents}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="row">
-        <div class="container text-left">
-            <div class="form-group">
-                <label for="title">제목 : </label>
-                <input type="text" class="form-control" id="title" name="title" v-model="title">
-            </div>
-            <div class="form-group">
-                <label for="createdDate">등록일 : </label>
-                <input type="text" class="form-control" id="tcreatedDatetle" name="createdDate" v-model="createdDate">
-            </div>
-            <div class="form-group">
-                <label for="hitCnt">조회수 : </label>
-                <input type="text" class="form-control" id="hitCnt" name="hitCnt" v-model="hitCnt">
-            </div>
-            <div class="form-group">
-                <label for="creatorId">사용자 ID : </label>
-                <input type="text" class="form-control" id="creatorId" name="creatorId" v-model="creatorId">
-            </div>
-            <div class="form-group">
-                <label for="contents">글 내용 : </label>
-                <textarea class="form-control" id="contents" name="contents" cols="30" rows="10" v-model="contents"></textarea>
-            </div>
+        <div class="container">
             <div class="row">
                     <div class="col-md-12 clear-fix">
-                        <button type = "button" class = "btn btn-outline-dark float-left" v-on:click = "moveList"> 목록 </button>
-                        <button type = "button" class = "btn btn-outline-success float-right" v-on:click = "boardUpdate"> 수정 </button>
-                        <button type = "button" class = "btn btn-outline-danger float-right mr-2" v-on:click = "boardDelete"> 삭제 </button>
+                        <button type = "button" class = "btn btn btn-sm float-left" v-on:click = "moveList" id="btnlist"> 목록 </button>
+                        <button type = "button" class = "btn btn btn-sm float-right mr-2" v-on:click = "boardDelete" id="btndel"> 삭제 </button>
+                        <button type = "button" class = "btn btn btn-sm float-right" v-on:click = "boardUpdate" id="btnmodi"> 수정 </button>
                     </div>
             </div>
         </div>
     </div>
+</div>
+    
 </template>
 
 <script>
@@ -46,11 +47,11 @@ export default {
     },
     methods: {
         moveList() {
-            this.$router.push({ name:'List'});
+            this.$router.push({ name:'Main'});
         },
         boardUpdate() {
             let obj =this;
-            this.$axios.put('http://localhost:9000/vue/axiosBoardUpdate', {
+            this.$axios.put('http://localhost:9000/blogDetail', {
                 seq: this.seq,
                 title: this.title,
                 contents: this.contents,
@@ -67,7 +68,7 @@ export default {
         },
         boardDelete() {
             let obj = this;
-            this.$axios.delete('http://localhost:9000/vue/axiosBoardDelete', {
+            this.$axios.delete('http://localhost:9000/deleteBlogBoard', {
                 params: {
                     seq: this.seq
                 }
@@ -85,16 +86,17 @@ export default {
     mounted() {
         let obj = this;
 
-        //this.boardIdx = this.$route.params.boardIdx;
-        if (obj.$route.params.boardIdx == undefined || obj.$route.params.seq == null || obj.$route.params.seq == 0) {
-            obj.seq = 16;
-        }
-        else {
-            obj.seq = obj.$route.params.seq;
-        }
+        // this.boardIdx = this.$route.params.boardIdx;
+        obj.seq = obj.$route.query.seq;
+        // if (obj.$route.params.boardIdx == undefined || obj.$route.params.seq == null || obj.$route.params.seq == 0) {
+        //     obj.seq = 16;
+        // }
+        // else {
+        //     obj.seq = obj.$route.params.seq;
+        // }
         
 
-        obj.$axios.get('http://localhost:9000/vue/axiosBoardDetail', {
+        obj.$axios.get('http://localhost:9000/blogDetail', {
             params: {
                 seq: obj.seq
             }
@@ -118,6 +120,46 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+#tablediv {
+    background-color: white;
+    margin-top: 50px;
+}
+.container {
+    width: 80%;
+}
+.btn {
+    border-radius: 50px;
+    background-color: rgb(163, 161, 165);
+    color: white;
+}
+/* #btnlist {
+    background-color: rgb(163, 161, 165);
+    color: white;
+} */
+#btnmodi {
+    margin-right: 10px;
+}
+/* #btndel {
+    background-color: rgb(163, 161, 165);
+    color: white;
+} */
+th {
+    padding: 30px;
+}
+td {
+    border-top: none;
+    padding: 10px;
+}
+thead {
+    border-bottom: 1px solid lightgray;
+}
+/* #thtr {
+    border: none;
+} */
+table {
+    text-align: center;
+    width: 100%;
+}
 </style>
+

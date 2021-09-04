@@ -4,19 +4,27 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import btc.dto.AxiosBoardDto;
+import btc.dto.BlogDto;
 
 @Mapper
-public interface VueBoardMapper {
-	List<AxiosBoardDto> vueSelectBoardList() throws Exception;
+public interface BlogMapper {
 
-	void vueInsertBoard(AxiosBoardDto board) throws Exception;
+//	게시판 목록 불러오기
+	List<BlogDto> selectBlogBoardList() throws Exception;
 
-	AxiosBoardDto vueSelectDetaildBoard(int seq) throws Exception;
+//	게시판 상세내용 보기
+	BlogDto selectBlogBoardDetail(int seq) throws Exception;
+	
+//	게시물 내용 입력하기
+	void blogBoardInsert(BlogDto board) throws Exception;
+
+//	조회수 카운트 
 	void vueCountUp(int seq) throws Exception;
 
-	void vueUpdateBoard(AxiosBoardDto board) throws Exception;
+//	게시물 수정하기
+	void blogBoardUpdate(BlogDto board) throws Exception;
 
-	void vueDeleteBoard(int seq) throws Exception;
+//	게시물 삭제하기
+	void blogBoardDelete(int seq) throws Exception;
 
 }

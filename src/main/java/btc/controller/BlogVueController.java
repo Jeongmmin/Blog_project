@@ -9,44 +9,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import btc.dto.AxiosBoardDto;
-import btc.service.VueBoardService;
+import btc.dto.BlogDto;
+import btc.service.BlogService;
 
 @RestController
-public class RestApiVueController {
+public class BlogVueController {
 	@Autowired
-	private VueBoardService vbService;
+	private BlogService bService;
 	
-	@RequestMapping(value="/vue/axiosBoardList", method=RequestMethod.GET)
-	public Object vueSelectBoardList() throws Exception {
-		List<AxiosBoardDto> dataList = vbService.vueSelectBoardList();
+//	전체 게시판 불러오기
+	@RequestMapping(value="/blogList", method=RequestMethod.GET)
+	public Object SelectBlogBoardList() throws Exception {
+		List<BlogDto> dataList = bService.selectBlogBoardList();
 		
 		return dataList;
 	}
+	
 //	지정한 게시판 글 확인하기
-	@RequestMapping(value="/vue/axiosBoardDetail", method=RequestMethod.GET)
-	public Object vueSelectBoardDetail(@RequestParam("seq") int seq) throws Exception {
-		AxiosBoardDto board = vbService.vueSelectDetailBoard(seq);
+	@RequestMapping(value="/blogDetail", method=RequestMethod.GET)
+	public Object SelectBlogBoardDetail(@RequestParam("seq") int seq) throws Exception {
+		BlogDto board = bService.selectBlogBoardDetail(seq);
 		return board;
 	}
 	
 //	detailNew 로 받는 컨트롤러 메서드 필요
 	
 //	새로운 게시글 등록하기
-	@RequestMapping(value="/vue/axiosBoardInsert", method=RequestMethod.POST)
-	public void vueBoardInsert(@RequestBody AxiosBoardDto board) throws Exception {
-		vbService.vueInsertBoard(board);
+	@RequestMapping(value="/blogBoardInsert", method=RequestMethod.POST)
+	public void BlogBoardInsert(@RequestBody BlogDto board) throws Exception {
+		bService.blogBoardInsert(board);
 	}
 	
 //	게시글 수정하기
-	@RequestMapping(value="/vue/axiosBoardUpdate", method=RequestMethod.PUT)
-	public void vueBoardUpdate(@RequestBody AxiosBoardDto board) throws Exception {
-		vbService.vueUpdateBoard(board);
+	@RequestMapping(value="/updateBlogBoard", method=RequestMethod.PUT)
+	public void BlogBoardUpdate(@RequestBody BlogDto board) throws Exception {
+		bService.blogBoardUpdate(board);
 	}
 	
 //	게시글 삭제하기
-	@RequestMapping(value="/vue/axiosBoardDelete", method=RequestMethod.DELETE)
-	public void vueBoardDelete(@RequestParam("seq") int seq) throws Exception {
-		vbService.vueDeleteBoard(seq);
+	@RequestMapping(value="/deleteBlogBoard", method=RequestMethod.DELETE)
+	public void BlogBoardDelete(@RequestParam("seq") int seq) throws Exception {
+		bService.blogBoardDelete(seq);
 	}
 }

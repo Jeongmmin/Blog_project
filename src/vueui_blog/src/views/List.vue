@@ -50,7 +50,7 @@ export default {
     mounted() {
         let obj = this;
 
-        obj.$axios.get("http://localhost:9000/vue/axiosBoardList")
+        obj.$axios.get("http://localhost:9000/blogList")
         .then(function(res) {
             console.log("axios로 비동기 통신 성공");
             obj.items = res.data;

@@ -42,14 +42,14 @@ export default {
         //axios를 사용하여 서버와 통신
         boardInsert() {
             let obj = this;
-            obj.$axios.post('http://localhost:9000/vue/axiosBoardInsert', {
+            obj.$axios.post('http://localhost:9000/blogBoardInsert', {
                 title: this.title,
                 contents: this.contents,
                 creatorId: this.creatorId
             })
             .then(function() {
                 console.log("비동기 통신 성공");
-                obj.$router.push({name:'List'});
+                obj.$router.push({name:'Main'});
                 
             })
             .catch(function(err) {
@@ -59,7 +59,7 @@ export default {
         },
         //리스트 화면으로 이동
         moveList() {
-            this.$router.push({ name: 'List'});
+            this.$router.push({ name: 'Main'});
         }
     },
 }

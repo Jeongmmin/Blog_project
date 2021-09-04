@@ -3,14 +3,15 @@ import VueRouter from 'vue-router'
 import List from '../views/List.vue'
 import Insert from '../views/Insert.vue'
 import Detail from '../views/Detail.vue'
+import Main from '../views/Main.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'List',
-    component: List
+    name: 'Main',
+    component: Main
   },
   {
     path: '/insert',
@@ -18,10 +19,16 @@ const routes = [
     component: Insert
   },
   {
-    path: '/Detail',
+    path: '/detail',
     name: 'Detail',
     component: Detail
-  }
+  },
+  {
+    path: '/list',
+    name: 'List',
+    component: List
+  },
+  
 ]
 
 const router = new VueRouter({

@@ -3,7 +3,7 @@ package btc.dto;
 import lombok.Data;
 
 @Data
-public class AxiosBoardDto {
+public class BlogDto {
 	private int seq;
 	private String title;
 	private String contents;

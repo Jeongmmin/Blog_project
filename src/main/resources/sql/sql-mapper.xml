@@ -4,8 +4,10 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="btc.mapper.VueBoardMapper">
-	<select id="vueSelectBoardList" resultType="btc.dto.AxiosBoardDto">
+<mapper namespace="btc.mapper.BlogMapper">
+
+	<!-- 전체게시판 목록 보기 -->
+	<select id="selectBlogBoardList" resultType="btc.dto.BlogDto">
 		<![CDATA[
 		
 			SELECT
@@ -20,19 +22,8 @@
 		]]>
 	</select>
 	
-	<insert id="vueInsertBoard" parameterType="btc.dto.AxiosBoardDto">
-		<![CDATA[ 
-	      
-	         INSERT INTO
-		            t_blog
-		            (title, contents, creator_id, created_date)
-	         VALUES
-	            	(#{title}, #{contents}, #{creatorId}, NOW())
-      	
-      	]]>
-	</insert>
-	
-	<select id="vueSelectDetaildBoard" parameterType="int" resultType="btc.dto.AxiosBoardDto">
+	<!-- 게시판 상세내용 보기 -->
+	<select id="selectBlogBoardDetail" parameterType="int" resultType="btc.dto.BlogDto">
 		<![CDATA[
 		
 	         SELECT
@@ -50,13 +41,28 @@
 		]]>
 	</select>
 	
+	<!-- 게시물 입력하기-->
+	<insert id="blogBoardInsert" parameterType="btc.dto.BlogDto">
+		<![CDATA[ 
+	      
+	         INSERT INTO
+		            t_blog
+		            (title, contents, creator_id, created_date)
+	         VALUES
+	            	(#{title}, #{contents}, #{creatorId}, NOW())
+      	
+      	]]>
+	</insert>
+	
+	<!-- 조회수 카운트-->
 	<update id="vueCountUp" parameterType="int">
 		<![CDATA[
 			update t_blog set hit_cnt = hit_cnt + 1 where seq = #{seq}
 		]]>
 	</update>
 	
-	<update id="vueUpdateBoard" parameterType="btc.dto.AxiosBoardDto">
+	<!-- 게시물 수정하기-->
+	<update id="blogBoardUpdate" parameterType="btc.dto.BlogDto">
 		<![CDATA[ 
 		
 	         UPDATE
@@ -72,8 +78,8 @@
       ]]>
 	</update>
 	
-	<!-- 목록에서만 안 보이게 하는 삭제방법-->
-	<update id="vueDeleteBoard" parameterType="int">
+	<!-- 목록에서만 안 보이게 하는 게시물 삭제방법-->
+	<update id="blogBoardDelete" parameterType="int">
 		<![CDATA[ 
 				UPDATE t_blog SET
 					deleted_yn = 'Y'
