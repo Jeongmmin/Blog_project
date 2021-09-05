@@ -4,6 +4,7 @@ import List from '../views/List.vue'
 import Insert from '../views/Insert.vue'
 import Detail from '../views/Detail.vue'
 import Main from '../views/Main.vue'
+import Update from '../views/Update.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/list',
     name: 'List',
     component: List
+  },
+  {
+    path: '/update',
+    name: 'Update',
+    component: Update
   },
   
 ]

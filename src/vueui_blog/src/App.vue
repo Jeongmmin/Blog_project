@@ -41,6 +41,6 @@ export default {
   color: #42b983;
 }
 * {
-  font-family: sans-serif
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
 </style>

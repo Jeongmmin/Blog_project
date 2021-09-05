@@ -25,6 +25,48 @@
     <!-- <div>
         <router-view></router-view>
     </div> -->
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-right" id="buttonlist" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                목록열기
+                </button>
+            </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="container" >
+        <div class="col-md-12 mx-auto" >
+            <table class="table table-sm">
+                <thead class="thead">
+                    <tr>
+                        <th>#</th>
+                        <th>제목</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in items" v-bind:key="item.seq">
+                        <td>{{ item.seq }}</td>
+                        <td class="text-center" v-on:click="moveDetail(item.seq)">{{ item.title }}</td>
+                        <td>{{ item.createdDate }}</td>
+                        <td>{{ item.hitCnt }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div >
+                <!-- button 태그의 기본 타입이 type=submit임 -->
+                <button type="button" class="btn btn-outline-dark float-right my-3" v-on:click="moveInsert">글쓰기</button>
+            </div>
+        </div>
+    </div>
+            </div>
+            </div>
+        </div>
+    </div>
     <div class="row row-cols-1 row-cols-md-2" id="cardgrooup">
         <div class="col mb-4">
             <div class="card">

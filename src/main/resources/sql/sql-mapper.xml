@@ -98,4 +98,43 @@
    			seq = #{seq}
    		]]>
    </delete> -->
+   
+   <!-- 댓글 리스트 목록-->
+   <select id="replyList" parameterType="int" resultType="btc.dto.ReplyDto">
+		<![CDATA[
+			SELECT
+				seq, blog_seq, reple_seq, contents, creator_id,
+				DATE_FORMAT(created_date, '%Y.%m.%d %H:%i:%s') AS created_date
+			FROM
+				t_reply
+			WHERE
+				blog_seq = #{blogSeq}
+			AND
+				deleted_yn = 'N'
+			ORDER BY
+				seq DESC
+		]]>
+	</select>
+	
+	<!-- 댓글 입력하기-->
+	<insert id="replyInsert" parameterType="btc.dto.ReplyDto">
+		<![CDATA[
+			INSERT INTO
+				t_reply (blog_seq, contents, creator_id, created_date)
+			VALUES
+				(#{blogSeq}, #{contents}, #{creatorId}, NOW())
+		]]>
+	</insert>
+	
+	<!-- 댓글 수정하기-->
+	<update id="replyDelete" parameterType="int">
+		<![CDATA[
+			UPDATE
+				t_reply
+			SET
+				deleted_yn = 'Y'
+			WHERE
+				seq = #{seq}
+		]]>
+	</update>
 </mapper>

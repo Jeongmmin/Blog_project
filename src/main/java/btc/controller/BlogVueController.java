@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import btc.dto.BlogDto;
+import btc.dto.ReplyDto;
 import btc.service.BlogService;
 
 @RestController
@@ -51,4 +52,27 @@ public class BlogVueController {
 	public void BlogBoardDelete(@RequestParam("seq") int seq) throws Exception {
 		bService.blogBoardDelete(seq);
 	}
+	
+//	댓글 보기
+	@RequestMapping(value="/replyList", method=RequestMethod.GET)
+	public Object replyList(@RequestParam("blogSeq") int blogSeq) throws Exception {
+		List<ReplyDto> dataList = bService.replyList(blogSeq);
+		
+		return dataList;
+	}
+	
+//	댓글 등록하기
+	@RequestMapping(value="/replyInsert", method=RequestMethod.POST)
+	public void replyInsert(@RequestBody ReplyDto board) throws Exception {
+		bService.replyInsert(board);
+	}
+	
+	
+//	댓글 삭제하기
+	@RequestMapping(value="/replyDelete", method=RequestMethod.DELETE)
+	public void replyDelete(@RequestParam("seq") int seq) throws Exception {
+		bService.replyDelete(seq);
+	}
+	
+	
 }
