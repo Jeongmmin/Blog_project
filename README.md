@@ -6,10 +6,12 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82005305/136494803-f0c81ee4-7101-4a12-a518-5e83628d7300.gif">
 </p>
+</br>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/82005305/136492194-b49d5936-2d2d-4c9d-9b88-2275cbc035af.gif">
 </p>
+</br>
 
 # Installation
 
