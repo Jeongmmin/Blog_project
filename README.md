@@ -4,7 +4,7 @@
 전체적으로 게시판의 형태지만, 우리가 아는 블로그와 유사한 UI를 적용하여 프론트 부분을 꾸몄고, DB를 하나 더 추가하여 댓글기능도 적용하여 각 글마다 댓글도 달 수 있도록 구현하였습니다.  
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/82005305/136492942-1512ab24-b493-407f-977e-edd7b02099a5.gif">
+<img src="https://user-images.githubusercontent.com/82005305/136494803-f0c81ee4-7101-4a12-a518-5e83628d7300.gif">
 </p>
 
 <p align="center">
