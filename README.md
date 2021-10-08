@@ -2,9 +2,18 @@
 
 > Mysql에 작성한 DB를 Spring과 연결시키고, Spring과 Vue.js를 axios통신으로 연결하여 블로그로 만드는 작업을 했습니다.  
 전체적으로 게시판의 형태지만, 우리가 아는 블로그와 유사한 UI를 적용하여 프론트 부분을 꾸몄고, DB를 하나 더 추가하여 댓글기능도 적용하여 각 글마다 댓글도 달 수 있도록 구현하였습니다.  
-전체적으로 게시판의 형태지만, 우리가 아는 블로그와 유사한 UI를 적용하여 프론트 부분을 꾸몄고, DB를 하나 더 추가하여 댓글기능도 적용하여 각 글마다 댓글도 달 수 있도록 구현하였습니다.
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/82005305/136492015-dd8d0657-e3e0-4f8c-8150-9d91cff4bff5.gif">
+</p>
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/82005305/136492146-d6babdbd-9651-44b8-a0cf-a63b96e067a8.gif">
+</p>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/82005305/136492194-b49d5936-2d2d-4c9d-9b88-2275cbc035af.gif">
+</p>
 
 # Installation
 
